@@ -6,10 +6,13 @@
 
 ## Run this Shiz!
 
-  `git clone git@github.com:GitMachines/gm-centos6.git`
-  `vagrant up`
-  `vagrant ssh`
-  `./vagrant/tryit.sh`
+```
+  git clone git@github.com:GitMachines/gm-centos6.git
+  cd gm-centos6
+  vagrant up
+  vagrant ssh
+  ./vagrant/tryit.sh
+```
 
 ## ToDo
 
