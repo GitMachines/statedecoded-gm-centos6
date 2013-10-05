@@ -36,9 +36,9 @@ Vagrant.configure("2") do |config|
 	config.vm.provision :shell, :path => "librarian.sh"
 
   config.vm.provision "puppet" do |puppet|
+		puppet.options = "--modulepath '/etc/puppet/modules'"
     puppet.manifests_path = "manifests"
     puppet.manifest_file = "default.pp"
-		puppet.module_path = "/etc/puppet/modules"
 	end
 
 end
