@@ -2,7 +2,7 @@
 
 ## Dependencies
   * Latest version of vagrant (vagrantup.com)
-  * Virtualbox with a certain version of guest additions (test this)
+  * Latest version Virtualbox (4.2.10 guest additions on our base box)
 
 ## Run this Shiz!
 
