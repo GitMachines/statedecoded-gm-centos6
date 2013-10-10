@@ -13,6 +13,11 @@ Our final goal is **a Statedecoded GitMachine - fully accreditation-ready, one-c
 
 ** Warning this is a work in progress **
 
+## How can I contribute?
+We are learning as we go and do not yet clear asks to make of others. However, you can:
+- Follow along, try things, and submit issues
+- Fork, hack, and make pull requests (PLEASE keep these small for now and related to our project goals).
+
 ## Why this project?
 The current [statedecoded-vagrant](https://github.com/statedecoded/statedecoded-vagrant) is helpful in setting up the environment on vagrant, but is not yet a one-click install. There are also has some gotchas we found in using it.
 
@@ -63,12 +68,6 @@ Why not just start from what [statedecoded-vagrant](https://github.com/statedeco
 - To see if we can streamline and further automate the install.
 - To rethink how documentation can be managed and even driven from code.
 - Because some installations will require the database to be run on a different server from the application and to have other redundancies. We want to understand how to create a path for varying configurations.
-
-## How can I contribute?
-We are learning as we go and do not yet clear asks to make of others. However, you can:
-- Follow along, try things, and submit issues
-- Fork, hack, and make pull requests (PLEASE keep these small for now and related to our project goals).
-
 
 ## ToDo
 See the issues.
