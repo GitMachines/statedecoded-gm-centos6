@@ -2,6 +2,15 @@
 
 This repo is to create a GitMachines version of State Decoded on CentOS 6.
 
+Our first goal is a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
+
+Our second goal is **basic scans for security auditing** as part of the install.
+
+Our third goal is **transparent documentation to make multi-machine configuration easier.** 
+
+Our final goal is **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
+
+
 ** Warning this is a work in progress **
 
 ## Why this project?
@@ -55,4 +64,11 @@ Why not just start from what [statedecoded-vagrant](https://github.com/statedeco
 - To rethink how documentation can be managed and even driven from code.
 - Because some installations will require the database to be run on a different server from the application and to have other redundancies. We want to understand how to create a path for varying configurations.
 
+## How can I contribute?
+We are learning as we go and do not yet clear asks to make of others. However, you can:
+- Follow along, try things, and submit issues
+- Fork, hack, and make pull requests (PLEASE keep these small for now and related to our project goals).
+
+
 ## ToDo
+See the issues.
