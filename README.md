@@ -47,6 +47,7 @@ This is box is being tested for the following security
 - OpenSCAP (Security Content Automation Protocols) and base line control configurations already exist for CentOS but do not yet for Ubuntu (from what we can tell). We need SCAP to produce the scans and audit reports to make Statedecoded accreditation-ready. 
 
 ## Why from scratch?
+Why not just start from what [statedecoded-vagrant](https://github.com/statedecoded/statedecoded-vagrant) has?
 - To learn.
 - To deal easier with CentOS's built-in firewall.
 - To automate OpenSCAP scanning and reporting.
