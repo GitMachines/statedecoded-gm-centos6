@@ -4,13 +4,10 @@ class{ 'epel': }
 
 # { "gmdoc": "https://gist.github.com/gregelin/6857377" }
 class { 'apache': }
-apache::module { 'rewrite': }
+##apache::mod { 'rewrite': }
 apache::vhost { 'statedecoded.dev':
-  server_name   => 'localhost',
-  docroot       => '/var/www/htdocs/',
+  docroot       => '/var/www/html/statedecoded',
   port          => '80',
-  env_variables => [],
-  priority      => '1',
 }
 
 
