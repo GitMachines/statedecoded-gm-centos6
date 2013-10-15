@@ -3,13 +3,15 @@ notify {"@ Super simple LAMP":}
 class{ 'epel': }
 
 # { "gmdoc": "https://gist.github.com/gregelin/6857377" }
-class { 'apache': }
+class { 'apache':  }
+
 ##apache::mod { 'rewrite': }
 apache::vhost { 'statedecoded.dev':
   docroot       => '/var/www/html/statedecoded',
   port          => '80',
 }
 
+apache::mod { 'php': }
 
 # { "gmdoc": "https://gist.github.com/gregelin/6858369"}
 resources { "firewall":
@@ -38,15 +40,27 @@ file { "/tmp/facts.yaml":
     content => inline_template("<%= scope.to_hash.reject { |k,v| !( k.is_a?(String) && v.is_a?(String) ) }.to_yaml %>"),
 }
 
-class { 'php': }
+#class { 'php': 
+#  service => 'apache',
+#  require => Class['apache'],
+#}
 
 php::module { 'mysql': }
 php::module { 'cli': }
-#php::module { 'curl': }
+php::module { 'curl': }
 php::module { 'intl': }
-php::module { 'mcrypt': }
+#php::module { 'mcrypt': }
 #php::module { 'mysqlnd': }
 php::module { 'tidy': }
+php::module { 'devel': }
+
+#class { 'php::devel':
+#  require => Class['php'],
+#}
+
+#class { 'php::pear':
+#  require => Class['php'],
+#}
 
 # Installation of solr
 # install open-jdk 1.6
