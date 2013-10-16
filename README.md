@@ -2,7 +2,7 @@
 
 This repo is to create a GitMachines version of State Decoded on CentOS 6.
 
-** Warning this is a work in progress **
+** Warning this is a work in progress - Please check branches for activity**
 
 
 ## Dependencies
