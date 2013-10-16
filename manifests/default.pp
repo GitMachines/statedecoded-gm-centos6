@@ -5,9 +5,16 @@ class{ 'epel': }
 # { "gmdoc": "https://gist.github.com/gregelin/6857377" }
 class { 'apache':  }
 
+# create a directory      
+file { [ "/var/www/html/statedecoded/", "/var/www/html/statedecoded/htdocs/" ] :
+     ensure => "directory",
+     }
+
 apache::vhost { 'statedecoded.dev':
+  vhost_name    => '*',
   docroot       => '/var/www/html/statedecoded/htdocs/',
   port          => '80',
+  default_vhost => true
 }
 
 # { "gmdoc": "https://gist.github.com/gregelin/6858369"}
