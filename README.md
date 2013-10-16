@@ -11,7 +11,7 @@ Our third goal is **transparent documentation to make multi-machine configuratio
 Our final goal is **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
 
 
-** Warning this is a work in progress **
+** Warning this is a work in progress - Please check branches for activity**
 
 ## How can I contribute?
 We are learning as we go and do not yet clear asks to make of others. However, you can:
