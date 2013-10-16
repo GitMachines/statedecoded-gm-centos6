@@ -6,8 +6,10 @@ class{ 'epel': }
 class { 'apache':  }
 
 apache::vhost { 'statedecoded.dev':
+  vhost_name    => '*',
   docroot       => '/var/www/html/statedecoded/htdocs/',
   port          => '80',
+  default_vhost => true,
 }
 
 # { "gmdoc": "https://gist.github.com/gregelin/6858369"}
@@ -50,4 +52,4 @@ php::ini { '/etc/httpd/conf/php.ini':
 
 class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
 
-php::module { [ 'mysql' ]: }
+php::module { [ 'mysql', 'tidy' ]: }
