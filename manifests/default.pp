@@ -57,4 +57,4 @@ php::ini { '/etc/httpd/conf/php.ini':
 
 class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
 
-php::module { [ 'mysql' ]: }
+php::module { [ 'mysql', 'tidy' ]: }
