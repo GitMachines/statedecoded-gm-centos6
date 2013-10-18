@@ -9,6 +9,11 @@ exec { 'get-statedecoded':
 	require         => Class['apache']
 }
 
+exec { 'chmod':
+  command => '/bin/chown apache /var/www/html/statedecoded',
+  require => exec['get-statedecoded'],
+}
+
 # Install and define apache
 class { 'apache': }
 
