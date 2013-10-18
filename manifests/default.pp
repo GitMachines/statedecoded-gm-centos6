@@ -10,7 +10,7 @@ exec { 'get-statedecoded':
 }
 
 exec { 'chmod':
-  command => '/bin/chown apache /var/www/html/statedecoded',
+  command => '/bin/chown -r apache:apache /var/www/html/statedecoded',
   require => exec['get-statedecoded'],
 }
 
@@ -47,6 +47,13 @@ mysql::db { 'statedecoded':
 	password	=> 'statedecoded',
 	host		=> 'localhost',
 	grant		=> 'ALL'
+}
+
+mysql::db { 'statedecoded2':
+        user            => 'statedecoded',
+        password        => 'statedecoded',
+        host            => 'localhost.localdomain',
+        grant           => 'ALL'
 }
 
 
