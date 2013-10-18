@@ -10,7 +10,7 @@ exec { 'get-statedecoded':
 }
 
 exec { 'chmod':
-  command => '/bin/chown -r apache:apache /var/www/html/statedecoded',
+  command => '/bin/chown -R apache:apache /var/www/html/statedecoded',
   require => exec['get-statedecoded'],
 }
 
