@@ -3,6 +3,11 @@ notify {"@ Super simple LAMP":}
 class { 'epel': }
 
 # Until we figure out a better way
+exec { 'mount-shared':
+	command		=> '/bin/umount /var/www/html/statedecoded; /bin/echo "/var/www/html/statedecoded      /var/www/html/statedecoded      vboxsf   uid=`id -u apache`,gid=`id -g apache`   0 0" >> /etc/fstab; /bin/mount /var/www/html/statedecoded',
+	require		=> Class['apache']
+}
+
 exec { 'get-statedecoded':
 	command		=> '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | /bin/tar zx --strip 1',
 	cwd		=> '/var/www/html/statedecoded',
