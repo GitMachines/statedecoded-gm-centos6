@@ -1,15 +1,17 @@
 notify {"@ Super simple LAMP":}
 
-class{ 'epel': }
+class { 'epel': }
 
-# { "gmdoc": "https://gist.github.com/gregelin/6857377" }
-class { 'apache':  }
+# Until we figure out a better way
+exec { 'get-statedecoded':
+	command		=> 'wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | tar zx --strip 1',
+	cwd		=> '/var/www/html/statedecoded'
+}
 
-# create a directory      
-file { [ "/var/www/html/statedecoded/", "/var/www/html/statedecoded/htdocs/" ] :
-     ensure => "directory",
-     }
+# Install and define apache
+class { 'apache': }
 
+# Add the statedecoded VHost to apache
 apache::vhost { 'statedecoded.dev':
   vhost_name    => '*',
   docroot       => '/var/www/html/statedecoded/htdocs/',
@@ -17,7 +19,6 @@ apache::vhost { 'statedecoded.dev':
   default_vhost => true
 }
 
-# { "gmdoc": "https://gist.github.com/gregelin/6858369"}
 resources { "firewall":
   # remove existing firewall rules
   purge => true
@@ -30,20 +31,24 @@ Firewall {
 class { ['my_fw::pre', 'my_fw::post']: }
 class { 'firewall': }
 
+# Install and define MySQL
+class { 'mysql::server':
+	service_enabled	=> true
+}
 
-# { "gmdoc": "https://gist.github.com/gregelin/6857258" }
-class { 'mysql::server': }
+mysql::db { 'statedecoded':
+	user		=> 'statedecoded',
+	password	=> 'statedecoded',
+	host		=> 'localhost',
+	grant		=> 'ALL'
+}
 
-/*
- { "gmdoc": {
- 	"title": "Capture basic report",
-   }
- }
-*/
+
 file { "/tmp/facts.yaml":
     content => inline_template("<%= scope.to_hash.reject { |k,v| !( k.is_a?(String) && v.is_a?(String) ) }.to_yaml %>"),
 }
 
+# Install and define php
 php::ini { '/etc/php.ini':
   display_errors => 'On',
   memory_limit   => '256M',
@@ -55,6 +60,7 @@ php::ini { '/etc/httpd/conf/php.ini':
   require => Class['apache'],
 }
 
-class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
-
 php::module { [ 'mysql', 'tidy' ]: }
+
+# Add php5 to Apache
+class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
