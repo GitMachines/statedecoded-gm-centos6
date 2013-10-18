@@ -4,8 +4,9 @@ class { 'epel': }
 
 # Until we figure out a better way
 exec { 'get-statedecoded':
-	command		=> 'wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | tar zx --strip 1',
-	cwd		=> '/var/www/html/statedecoded'
+	command		=> '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | /bin/tar zx --strip 1',
+	cwd		=> '/var/www/html/statedecoded',
+	require         => Class['apache']
 }
 
 # Install and define apache
