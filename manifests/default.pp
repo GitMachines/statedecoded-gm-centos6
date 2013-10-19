@@ -26,6 +26,23 @@ file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
   source  => "/vagrant/resources/class.Virginia.inc.php"
 }
 
+exec {'make-dataimport':
+  command  => '/bin/mkdir /var/www/html/statedecoded/htdocs/admin/import-data',
+  require  => exec[ 'mount-shared' ],
+}
+
+exec { 'pull-laws':
+  command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
+  cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
+  require  => exec[ 'make-dataimport' ],
+}
+
+exec { 'unzip-laws':
+  command  => '/usr/bin/unzip code.xml.zip',
+  cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
+  require  => exec[ 'pull-laws' ],
+}
+	
 exec { 'get-statedecoded':
 	command		=> '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | /bin/tar zx --strip 1',
 	cwd		=> '/var/www/html/statedecoded',
