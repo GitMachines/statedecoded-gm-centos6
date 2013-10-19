@@ -8,6 +8,24 @@ exec { 'mount-shared':
 	require		=> Class['apache']
 }
 
+file { '/var/www/html/statedecoded/includes/config.inc.php':
+  owner   => apache,
+  group   => apache,
+  mode    => 775,
+  ensure  => present,
+  require => exec[ 'mount-shared' ],
+  source  => "/vagrant/resources/config.inc.php"
+}
+
+file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
+  owner   => apache,
+  group   => apache,
+  mode    => 775,
+  ensure  => present,
+  require => exec[ 'mount-shared' ],
+  source  => "/vagrant/resources/class.Virginia.inc.php"
+}
+
 exec { 'get-statedecoded':
 	command		=> '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | /bin/tar zx --strip 1',
 	cwd		=> '/var/www/html/statedecoded',
@@ -53,14 +71,6 @@ mysql::db { 'statedecoded':
 	host		=> 'localhost',
 	grant		=> 'ALL'
 }
-
-mysql::db { 'statedecoded2':
-        user            => 'statedecoded',
-        password        => 'statedecoded',
-        host            => 'localhost.localdomain',
-        grant           => 'ALL'
-}
-
 
 file { "/tmp/facts.yaml":
     content => inline_template("<%= scope.to_hash.reject { |k,v| !( k.is_a?(String) && v.is_a?(String) ) }.to_yaml %>"),
