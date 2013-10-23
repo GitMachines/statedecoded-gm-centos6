@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 	config.vm.provision :shell, :path => "librarian.sh"
 	
 	# Set up synched folder for working on StateDecoded on the host (Also ensures the directory is created)
-	config.vm.synced_folder "statedecoded/", "/var/www/html/statedecoded", id: "vagrant-root", create: true
+	#config.vm.synced_folder "statedecoded/", "/var/www/html/statedecoded", id: "vagrant-root", create: true
 	
 	# Run our puppet modules
 	config.vm.provision "puppet" do |puppet|

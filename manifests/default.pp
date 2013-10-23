@@ -3,9 +3,14 @@ notify {"@ Super simple LAMP":}
 class { 'epel': }
 
 # Until we figure out a better way
-exec { 'mount-shared':
-	command		=> '/bin/umount /var/www/html/statedecoded; /bin/echo "/var/www/html/statedecoded      /var/www/html/statedecoded      vboxsf   uid=`id -u apache`,gid=`id -g apache`   0 0" >> /etc/fstab; /bin/mount /var/www/html/statedecoded',
-	require		=> Class['apache']
+#exec { 'mount-shared':
+#	command		=> '/bin/umount /var/www/html/statedecoded; /bin/echo "/var/www/html/statedecoded      /var/www/html/statedecoded      vboxsf   uid=`id -u apache`,gid=`id -g apache`   0 0" >> /etc/fstab; /bin/mount /var/www/html/statedecoded',
+#	require		=> Class['apache']
+#}
+
+# create a directory  
+file { [ "/var/www/html/statedecoded/", "/var/www/html/statedecoded/htdocs/" ] :
+   ensure => "directory",
 }
 
 file { '/var/www/html/statedecoded/includes/config.inc.php':
@@ -28,7 +33,7 @@ file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
 
 exec {'make-dataimport':
   command  => '/bin/mkdir /var/www/html/statedecoded/htdocs/admin/import-data',
-  require  => exec[ 'mount-shared' ],
+  require  => exec[ 'get-statedecoded' ],
 }
 
 exec { 'pull-laws':
