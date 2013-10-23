@@ -13,7 +13,7 @@ file { '/var/www/html/statedecoded/includes/config.inc.php':
   group   => apache,
   mode    => 775,
   ensure  => present,
-  require => exec[ 'mount-shared' ],
+  require => exec[ 'get-statedecoded' ],
   source  => "/vagrant/resources/config.inc.php"
 }
 
@@ -22,7 +22,7 @@ file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
   group   => apache,
   mode    => 775,
   ensure  => present,
-  require => exec[ 'mount-shared' ],
+  require => exec[ 'get-statedecoded' ],
   source  => "/vagrant/resources/class.Virginia.inc.php"
 }
 
