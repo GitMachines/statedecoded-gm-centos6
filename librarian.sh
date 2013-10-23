@@ -2,7 +2,7 @@ which librarian-puppet > /dev/null
 if [ $? -ne 0 ]
 then
 	echo "librarian-puppet-maestrodev not installed, installing"
-	gem install librarian-puppet-maestrodev
+	gem install librarian-puppet-maestrodev --no-ri --no-rdoc
 fi
 
 cp /vagrant/Puppetfile* /etc/puppet
