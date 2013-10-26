@@ -3,10 +3,10 @@ notify {"@ Super simple LAMP":}
 class { 'epel': }
 
 # Until we figure out a better way
-#exec { 'mount-shared':
-#	command		=> '/bin/umount /var/www/html/statedecoded; /bin/echo "/var/www/html/statedecoded      /var/www/html/statedecoded      vboxsf   uid=`id -u apache`,gid=`id -g apache`   0 0" >> /etc/fstab; /bin/mount /var/www/html/statedecoded',
-#	require		=> Class['apache']
-#}
+exec { 'mount-shared':
+	command		=> '/bin/umount /var/www/html/statedecoded; /bin/echo "/var/www/html/statedecoded      /var/www/html/statedecoded      vboxsf   uid=`id -u apache`,gid=`id -g apache`   0 0" >> /etc/fstab; /bin/mount /var/www/html/statedecoded',
+	require		=> Exec['get-statedecoded']
+}
 
 # create a directory  
 file { [ "/var/www/html/statedecoded/", "/var/www/html/statedecoded/htdocs/" ] :
@@ -49,15 +49,16 @@ exec { 'unzip-laws':
 }
 	
 exec { 'get-statedecoded':
-	command		=> '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.7.tar.gz | /bin/tar zx --strip 1',
+	command		=> '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/master.tar.gz| /bin/tar zx --strip 1',
 	cwd		=> '/var/www/html/statedecoded',
-	require         => Class['apache']
+	require         => Class['apache'],
 }
 
-exec { 'chmod':
-  command => '/bin/chown -R apache:apache /var/www/html/statedecoded',
-  require => exec['get-statedecoded'],
-}
+#exec { 'unzip-statedecoded':
+#  command => '/usr/bin/unzip master;/bin/mv statedecoded-master statedecoded; /bin/rm master',
+#  cwd     => '/var/www/html',
+#  require => Exec[ 'get-statedecoded' ],
+#}
 
 # Install and define apache
 class { 'apache': }
@@ -66,8 +67,11 @@ class { 'apache': }
 apache::vhost { 'statedecoded.dev':
   vhost_name    => '*',
   docroot       => '/var/www/html/statedecoded/htdocs/',
+  directories => [ { path => '/var/www/html/statedecoded', options => ['Indexes','FollowSymLinks','MultiViews'], allow_override => ['All'] } ],
   port          => '80',
-  default_vhost => true
+  default_vhost => true,
+  override => 'all',
+  require       => Exec['get-statedecoded']
 }
 
 resources { "firewall":
@@ -111,7 +115,7 @@ php::ini { '/etc/httpd/conf/php.ini':
   require => Class['apache'],
 }
 
-php::module { [ 'mysql', 'tidy' ]: }
+php::module { [ 'mysql', 'tidy', 'pear-Log' ]: }
 
 # Add php5 to Apache
 class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
