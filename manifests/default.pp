@@ -18,7 +18,7 @@ file { '/var/www/html/statedecoded/includes/config.inc.php':
   group   => apache,
   mode    => 775,
   ensure  => present,
-  require => exec[ 'get-statedecoded' ],
+  require => Exec[ 'get-statedecoded' ],
   source  => "/vagrant/resources/config.inc.php"
 }
 
@@ -27,25 +27,25 @@ file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
   group   => apache,
   mode    => 775,
   ensure  => present,
-  require => exec[ 'get-statedecoded' ],
+  require => Exec[ 'get-statedecoded' ],
   source  => "/vagrant/resources/class.Virginia.inc.php"
 }
 
 exec {'make-dataimport':
   command  => '/bin/mkdir /var/www/html/statedecoded/htdocs/admin/import-data',
-  require  => exec[ 'get-statedecoded' ],
+  require  => Exec[ 'get-statedecoded' ],
 }
 
 exec { 'pull-laws':
   command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
-  require  => exec[ 'make-dataimport' ],
+  require  => Exec[ 'make-dataimport' ],
 }
 
 exec { 'unzip-laws':
   command  => '/usr/bin/unzip code.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
-  require  => exec[ 'pull-laws' ],
+  require  => Exec[ 'pull-laws' ],
 }
 	
 exec { 'get-statedecoded':
