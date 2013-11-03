@@ -83,7 +83,7 @@ Firewall {
   before  => Class['my_fw::post'],
   require => Class['my_fw::pre']
 }
-class { ['my_fw::pre', 'my_fw::post']: }
+class { ['my_fw::pre', 'my_fw::post', 'my_fw::solr']: }
 class { 'firewall': }
 
 # Install and define MySQL
@@ -119,3 +119,27 @@ php::module { [ 'mysql', 'tidy', 'pear-Log' ]: }
 
 # Add php5 to Apache
 class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
+
+# solr install
+file {"solr_home":
+    name => "${home}/solr_home",
+    ensure => directory,
+    recurse => true,
+    purge => true,
+    source => "/vagrant/src/solr_home",
+    mode => '0644',
+} ->
+
+# package { 'default-jdk': 
+#     ensure => 'installed',
+# } ->
+
+# install open-jdk 1.6
+package{"java-1.6.0-openjdk-devel":
+  ensure=>latest
+} ->
+
+# We have to install solr last since it needs a working solr home
+class { "solr::jetty":
+    solr_home => "${statedecoded_home}/solr_home"
+}
