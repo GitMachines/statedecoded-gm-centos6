@@ -1,4 +1,5 @@
 notify {"@ Super simple LAMP":}
+$statedecoded_home = "/var/www/html/statedecoded"
 
 class { 'epel': }
 
