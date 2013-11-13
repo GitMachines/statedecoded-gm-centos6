@@ -31,15 +31,15 @@ file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
   source  => "/vagrant/resources/class.Virginia.inc.php"
 }
 
-exec {'make-dataimport':
-  command  => '/bin/mkdir /var/www/html/statedecoded/htdocs/admin/import-data',
+file {'/var/www/html/statedecoded/htdocs/admin/import-data' :
+  ensure => "directory",
   require  => Exec[ 'get-statedecoded' ],
 }
 
 exec { 'pull-laws':
   command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
-  require  => Exec[ 'make-dataimport' ],
+  require  => File[ '/var/www/html/statedecoded/htdocs/admin/import-data' ],
 }
 
 exec { 'unzip-laws':
@@ -182,8 +182,9 @@ exec{ 'get-solr':
   command => '/usr/bin/wget http://apache.mirrors.pair.com/lucene/solr/4.5.1/solr-4.5.1.tgz',
   cwd  => '/home/vagrant',
   require  => Package[ 'tomcat6','tomcat6-webapps','tomcat6-admin-webapps'], }
+#require  => Service[ 'tomcat6' ], }
 
-exec { 'extract-solr':
+exec { 'untar-solr':
   command => '/bin/tar -xzvf solr-4.5.1.tgz',
   cwd => '/home/vagrant',
   require => Exec[ 'get-solr' ], }
@@ -191,6 +192,6 @@ exec { 'extract-solr':
 exec { 'copy-solr':
   command => '/bin/cp solr-4.5.1.war /usr/share/tomcat6/webapps/solr.war',
   cwd => '/home/vagrant/solr-4.5.1/dist',
-  require => Exec[ 'extract-solr' ],
+  require => Exec[ 'untar-solr' ],
   notify => service[ 'tomcat6' ],
 }
