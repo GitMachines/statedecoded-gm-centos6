@@ -2,7 +2,7 @@
 
 This repo is to create a GitMachines version of State Decoded on CentOS 6.
 
-Our first goal is a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
+Our first goal is a **one-click install of Waldo Jaquith's [The State Decoded](http://www.statedecoded.com/)**.
 
 Our second goal is **basic scans for security auditing** as part of the install.
 
