@@ -189,9 +189,33 @@ exec { 'untar-solr':
   cwd => '/home/vagrant',
   require => Exec[ 'get-solr' ], }
 
+exec { 'copy-webxml':
+  command => '/bin/cp /vagrant/resources/web.xml .',
+  cwd => '/home/vagrant/solr-4.5.1/dist', 
+  require => Exec[ 'untar-solr' ], }
+
+exec { 'replace-webxml':
+  command => '/opt/jdk1.7.0_45/bin/jar -uf ./solr-4.5.1.war web.xml',
+  cwd => '/home/vagrant/solr-4.5.1/dist',
+  require => Exec[ 'copy-webxml' ], }
+
 exec { 'copy-solr':
   command => '/bin/cp solr-4.5.1.war /usr/share/tomcat6/webapps/solr.war',
   cwd => '/home/vagrant/solr-4.5.1/dist',
-  require => Exec[ 'untar-solr' ],
-  notify => service[ 'tomcat6' ],
+  require => Exec[ 'replace-webxml' ],
+}
+
+file { [ "/home/solr/" ] :
+   ensure => "directory",
+}
+
+exec{ 'copy-solr-home':
+  command => '/bin/cp -r /var/www/html/statedecoded/solr_home/ /home/solr',
+  cwd => '/home/solr',
+  require => File[ '/home/solr' ],
+}
+
+exec { 'mount-shared-solr':
+        command         => '/bin/umount /home/solr; /bin/echo "/home/solr      /home/solr      vboxsf   uid=`id -u tomcat`,gid=`id -g tomcat`   0 0" >> /etc/fstab; /bin/mount /home/solr',
+        require         => Exec['copy-solr']
 }
