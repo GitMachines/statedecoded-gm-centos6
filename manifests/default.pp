@@ -190,12 +190,12 @@ exec { 'untar-solr':
   require => Exec[ 'get-solr' ], }
 
 exec { 'copy-webxml':
-  command => '/bin/cp /vagrant/resources/web.xml .',
+  command => '/bin/cp -r /vagrant/resources/WEB-INF .',
   cwd => '/home/vagrant/solr-4.5.1/dist', 
   require => Exec[ 'untar-solr' ], }
 
 exec { 'replace-webxml':
-  command => '/opt/jdk1.7.0_45/bin/jar -uf ./solr-4.5.1.war web.xml',
+  command => '/opt/jdk1.7.0_45/bin/jar -uf ./solr-4.5.1.war WEB-INF/web.xml',
   cwd => '/home/vagrant/solr-4.5.1/dist',
   require => Exec[ 'copy-webxml' ], }
 
@@ -210,7 +210,7 @@ file { [ "/home/solr/" ] :
 }
 
 exec{ 'copy-solr-home':
-  command => '/bin/cp -r /var/www/html/statedecoded/solr_home/ /home/solr',
+  command => '/bin/cp -r /var/www/html/statedecoded/solr_home/* /home/solr',
   cwd => '/home/solr',
   require => File[ '/home/solr' ],
 }
