@@ -210,9 +210,9 @@ file { [ "/home/solr/" ] :
 }
 
 exec{ 'copy-solr-home':
-  command => '/bin/cp -r /var/www/html/statedecoded/solr_home/* /home/solr',
+  command => '/bin/cp -r /var/www/html/statedecoded/solr_home/* /home/solr/',
   cwd => '/home/solr',
-  require => File[ '/home/solr' ],
+  require => [File[ '/home/solr' ], Exec ['mount-shared'] ],
 }
 
 exec { 'mount-shared-solr':
