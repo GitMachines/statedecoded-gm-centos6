@@ -12,12 +12,13 @@ Vagrant.configure("2") do |config|
 	# network config from statedecoded
 	config.vm.network :private_network, ip: "192.168.56.101"
 	config.vm.network :forwarded_port, guest: 80, host: 8080
-	
+        config.vm.network :forwarded_port, guest: 8080, host:8081	
 	# Install puppet modules
 	config.vm.provision :shell, :path => "librarian.sh"
 	
 	# Set up synched folder for working on StateDecoded on the host (Also ensures the directory is created)
 	config.vm.synced_folder "statedecoded/", "/var/www/html/statedecoded", id: "vagrant-root", create: true
+	config.vm.synced_folder "solr/", "/home/solr", id: "vagrant-root", create: true         
 	
 	# Run our puppet modules
 	config.vm.provision "puppet" do |puppet|
@@ -25,4 +26,7 @@ Vagrant.configure("2") do |config|
 		puppet.manifests_path = "manifests"
 		puppet.manifest_file = "default.pp"
 	end
+
+	config.vm.provision :shell, :path => "restart-tomcat.sh"
+	
 end

@@ -31,15 +31,15 @@ file { '/var/www/html/statedecoded/includes/class.Virginia.inc.php':
   source  => "/vagrant/resources/class.Virginia.inc.php"
 }
 
-exec {'make-dataimport':
-  command  => '/bin/mkdir /var/www/html/statedecoded/htdocs/admin/import-data',
+file {'/var/www/html/statedecoded/htdocs/admin/import-data' :
+  ensure => "directory",
   require  => Exec[ 'get-statedecoded' ],
 }
 
 exec { 'pull-laws':
   command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
-  require  => Exec[ 'make-dataimport' ],
+  require  => File[ '/var/www/html/statedecoded/htdocs/admin/import-data' ],
 }
 
 exec { 'unzip-laws':
@@ -83,7 +83,7 @@ Firewall {
   before  => Class['my_fw::post'],
   require => Class['my_fw::pre']
 }
-class { ['my_fw::pre', 'my_fw::post']: }
+class { ['my_fw::pre', 'my_fw::post', 'my_fw::tomcat']: }
 class { 'firewall': }
 
 # Install and define MySQL
@@ -118,4 +118,104 @@ php::ini { '/etc/httpd/conf/php.ini':
 php::module { [ 'mysql', 'tidy', 'pear-Log' ]: }
 
 # Add php5 to Apache
-class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini' }
+class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini', }
+
+exec{ 'get-java':
+  command  => '/usr/bin/wget -S -O java.tar.gz --no-cookies --no-check-certificate --head  "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/7u45-b18/jdk-7u45-linux-x64.tar.gz"',
+  cwd  => '/opt', }
+
+exec{ 'extract-java':
+  command  => '/bin/tar -xzvf java.tar.gz',
+  cwd => '/opt',
+  require  => Exec[ 'get-java' ], }
+
+exec{ 'create-exec-java':
+  command => '/usr/sbin/alternatives --install /usr/bin/java java /opt/jdk1.7.0_45/bin/java 20000',
+  cwd => '/opt',
+  require  => Exec[ 'extract-java' ], }
+
+# install tomcat & co.
+package {["tomcat6", "tomcat6-webapps", "tomcat6-admin-webapps"]:
+  ensure =>"present",
+  require  => Exec[ 'create-exec-java' ], }
+
+# start tomcat
+service { "tomcat6":
+  enable => "true",
+  ensure => "running",
+  hasrestart => "true",
+  hasstatus => "true",
+  require  => Package[ "tomcat6", "tomcat6-webapps", "tomcat6-admin-webapps" ], 
+}
+
+exec{ 'get-common-logging':
+  command => '/usr/bin/wget -S http://apache.osuosl.org//commons/logging/binaries/commons-logging-1.1.3-bin.tar.gz',
+  cwd => '/home/vagrant',
+  require => Service[ 'tomcat6' ], }
+
+exec{ 'extract-common-logging':
+  command => '/bin/tar -xzvf commons-logging-1.1.3-bin.tar.gz',
+  cwd => '/home/vagrant',
+  require  => Exec[ 'get-common-logging' ], }
+
+exec{ 'copy-common-logging':
+  command => '/bin/cp commons-logging-*.jar /usr/share/tomcat6/lib',
+  cwd  => '/home/vagrant/commons-logging-1.1.3',
+  require  => Exec[ 'extract-common-logging' ], }
+
+exec{ 'get-slf4j':
+  command => '/usr/bin/wget -S http://www.slf4j.org/dist/slf4j-1.7.5.tar.gz',
+  cwd => '/home/vagrant',
+  require => Service[ 'tomcat6' ], }
+
+exec{ 'extract-slf4j':
+  command => '/bin/tar -xzvf slf4j-1.7.5.tar.gz',
+  cwd => '/home/vagrant',
+  require  => Exec[ 'get-slf4j' ], }
+
+exec{ 'copy-slf4j':
+  command => '/bin/cp slf4j-*.jar /usr/share/tomcat6/lib',
+  cwd  => '/home/vagrant/slf4j-1.7.5',
+  require  => Exec[ 'extract-slf4j' ], }
+
+exec{ 'get-solr':
+  command => '/usr/bin/wget http://apache.mirrors.pair.com/lucene/solr/4.5.1/solr-4.5.1.tgz',
+  cwd  => '/home/vagrant',
+  require  => Package[ 'tomcat6','tomcat6-webapps','tomcat6-admin-webapps'], }
+#require  => Service[ 'tomcat6' ], }
+
+exec { 'untar-solr':
+  command => '/bin/tar -xzvf solr-4.5.1.tgz',
+  cwd => '/home/vagrant',
+  require => Exec[ 'get-solr' ], }
+
+exec { 'copy-webxml':
+  command => '/bin/cp -r /vagrant/resources/WEB-INF .',
+  cwd => '/home/vagrant/solr-4.5.1/dist', 
+  require => Exec[ 'untar-solr' ], }
+
+exec { 'replace-webxml':
+  command => '/opt/jdk1.7.0_45/bin/jar -uf ./solr-4.5.1.war WEB-INF/web.xml',
+  cwd => '/home/vagrant/solr-4.5.1/dist',
+  require => Exec[ 'copy-webxml' ], }
+
+exec { 'copy-solr':
+  command => '/bin/cp solr-4.5.1.war /usr/share/tomcat6/webapps/solr.war',
+  cwd => '/home/vagrant/solr-4.5.1/dist',
+  require => Exec[ 'replace-webxml' ],
+}
+
+file { [ "/home/solr/" ] :
+   ensure => "directory",
+}
+
+exec{ 'copy-solr-home':
+  command => '/bin/cp -r /var/www/html/statedecoded/solr_home/* /home/solr/',
+  cwd => '/home/solr',
+  require => [File[ '/home/solr' ], Exec ['mount-shared'] ],
+}
+
+exec { 'mount-shared-solr':
+        command         => '/bin/umount /home/solr; /bin/echo "/home/solr      /home/solr      vboxsf   uid=`id -u tomcat`,gid=`id -g tomcat`   0 0" >> /etc/fstab; /bin/mount /home/solr',
+        require         => Exec['copy-solr']
+}

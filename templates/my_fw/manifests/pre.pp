@@ -18,6 +18,7 @@ class my_fw::pre {
     action  => 'accept',
   }
 
+  /* Accept everything on localhost loopback */
   firewall { '001 accept all to lo interface':
     proto   => 'all',
     iniface => 'lo',
