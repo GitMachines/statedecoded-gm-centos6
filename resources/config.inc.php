@@ -46,9 +46,9 @@ define('SECTION_SYMBOL', '§');
 define('WEB_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 /*
- * Define the location of the files to import.
+ * Define the location of the files to import. Be sure to end path with a slash `/`.
  */
-define('IMPORT_DATA_DIR', WEB_ROOT . '/admin/import-data/');
+define('IMPORT_DATA_DIR', WEB_ROOT . 'admin/import-data/code/');
 
 /*
  * The file in the /includes/ directory that contains functions custom to this installation.
