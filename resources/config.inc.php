@@ -48,7 +48,7 @@ define('WEB_ROOT', $_SERVER['DOCUMENT_ROOT']);
 /*
  * Define the location of the files to import.
  */
-define('IMPORT_DATA_DIR', WEB_ROOT . '/admin/import-data/');
+define('IMPORT_DATA_DIR', WEB_ROOT . 'admin/import-data/code');
 
 /*
  * The file in the /includes/ directory that contains functions custom to this installation.
