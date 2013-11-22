@@ -12,8 +12,8 @@ Our goals:
 ** Warning this is a work in progress - Please check branches for activity**
 
 ## Versions
-v0.2 nicer: one-click install to working StateDecoded localhost:8080, tomcat6, solr. Ready to import Virginia laws. Solr not populated. No auto security check."
-v0.1 nice: one-click install to working localhost:8080, no xml, no solr
+- v0.2 nicer: one-click install to working StateDecoded localhost:8080, tomcat6, solr. Ready to import Virginia laws. Solr not populated. No auto security check.
+- v0.1 nice: one-click install to working localhost:8080, no xml, no solr
 
 ## How can I contribute?
 We are learning as we go and do not yet clear asks to make of others. However, you can:
