@@ -5,11 +5,15 @@ This repo is to create a GitMachines version of State Decoded on CentOS 6.
 Our goals:
 
 - [x] First, a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
-- [] Second, **basic scans for security auditing** as part of the install.
+- [*] Second, **basic scans for security auditing** as part of the install.
 - [] Third, **transparent documentation to make multi-machine configuration easier.** 
 - [] Finally, **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
 
 ** Warning this is a work in progress - Please check branches for activity**
+
+## Versions
+v0.2 nicer: one-click install to working StateDecoded localhost:8080, tomcat6, solr. Ready to import Virginia laws. Solr not populated. No auto security check."
+v0.1 nice: one-click install to working localhost:8080, no xml, no solr
 
 ## How can I contribute?
 We are learning as we go and do not yet clear asks to make of others. However, you can:
