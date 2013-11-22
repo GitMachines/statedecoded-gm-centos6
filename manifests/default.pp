@@ -36,6 +36,16 @@ file {'/var/www/html/statedecoded/htdocs/admin/import-data' :
   require  => Exec[ 'get-statedecoded' ],
 }
 
+# Until we figure out the .htaccess issue, copy over .htaccess version that works
+file { '/var/www/html/statedecoded/htdocs/.htaccess':
+  owner   => apache,
+  group   => apache,
+  mode    => 664,
+  ensure  => present,
+  require => Exec[ 'get-statedecoded' ],
+  source  => "/vagrant/resources/.htaccess"
+}
+
 exec { 'pull-laws':
   command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',

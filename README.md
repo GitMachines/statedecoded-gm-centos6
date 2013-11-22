@@ -2,14 +2,12 @@
 
 This repo is to create a GitMachines version of State Decoded on CentOS 6.
 
-Our first goal is a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
+Our goals:
 
-Our second goal is **basic scans for security auditing** as part of the install.
-
-Our third goal is **transparent documentation to make multi-machine configuration easier.** 
-
-Our final goal is **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
-
+- [x] First, a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
+- [] Second, **basic scans for security auditing** as part of the install.
+- [] Third, **transparent documentation to make multi-machine configuration easier.** 
+- [] Finally, **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
 
 ** Warning this is a work in progress - Please check branches for activity**
 
@@ -24,28 +22,71 @@ The current [statedecoded-vagrant](https://github.com/statedecoded/statedecoded-
 At GitMachines we are interested in one-click installs to get accreditation-ready builds in order to encourage adoption.
 
 ## Status
-Follow along our repo, which will probably have many branches as we experiment. We've made this our main technical focus right now.
+### What our one-click build does..
+
+1. Uses CentOS, which is very very close to RedHat Enterprise
+2. Configures CentOS firewall for Apache, Solr, and Tomcat
+3. Pulls down statededecoded from its github repo
+4. Mounts statedecoded directory on both guest and host machine (so you can access files from host machine, too)
+5. Installs PHP 5, Apache, Java (for Solr, Tomcat), Tomcat6 (for running Solr), Solr,
+6. Configures statedecoded.dev virtual host
+7. Pulls down Virginia state laws
+8. Has everything running on completion
+9. Has a script to trigger SCAP security scan (not currently part of automation chain)d
+
+### What user needs to do...
+1. Clone repo and cd into repo directory
+2. Type `vagrant up`
+3. Surf web for 12-15 minutes
+4. Use localhost:8080 or add statedecoded.dev to their /etc/hosts file
+5. Visit statedecoded.dev/admin and set off processing of Virginia laws
+6. (Is there a step to do to get laws ingested into Solr?)
 
 ## Dependencies
   * Latest version of vagrant (vagrantup.com)
   * Latest version Virtualbox (4.2.10 guest additions on our base box)
+  * Do not have service running on ports 8080 or 8081 on host computer.
 
 ## Instructions
 
-
+### One-click build
 ```
   # Clone this repo locally to your computer and switch to repo directory.
   git clone git@github.com:GitMachines/statedecoded-gm-centos6.git
   cd statedecoded-gm-centos6
   
-  # Launch your gitmachine 
+  # Stop any processes# Launch your gitmachine 
   vagrant up
   # Browse the web, b/c this will take a while. 
 
-  # SSH into your gitmachine and run the SCAP test
-  vagrant ssh
-  /vagrant/tryit.sh
+  # Your statedecoded GitMachines is running on http://localhost:8080
 ```
+
+### Install Virginia State Laws
+Your statedecoded will look a bit lame without any laws. We've pre-configured everything to use Virginia's laws as a sample.
+
+To finish the import of Virginia's Laws, open web browser and navigate to http://localhost:8080/admin/ and follow instructions to import.
+
+### (Optional) Give your GitMachine a domain name of statedecoded.dev
+Your GitMachine and Statedecoded website is configured to be accessed by the domain `statedecoded.dev`. To do this, add the following line to the bottome of your host computer's known hosts file (ex: `/etc/hosts` on Linux and Macs).
+
+```
+192.168.56.101  statedecoded.dev
+```
+
+Note: We do not automate changing your host computer's known hosts file because it is highly risky to do automatically.
+
+### (Optional) SSH into your gitmachine and run the SCAP test
+  vagrant ssh
+  # Install necessary libraries
+  sudo /vagrant/bootstrap.sh
+  /vagrant/tryit.sh
+  sudo cp /tmp/localhost.localdomain-ssg-results.html /var/www/html/statedecoded/htdocs/ssg-results.html
+  sudo cp /tmp/localhost.localdomain-ssg-results.xml /var/www/html/statedecoded/htdocs/ssg-results.xml
+```
+
+Your report will not be available at `http://localhost:8080/ssg-results.html` and `http://localhost:8080/ssg-results.xml`
+
 ## Security
 
 This is box is being tested for the following security
