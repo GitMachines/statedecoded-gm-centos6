@@ -65,7 +65,7 @@ At GitMachines we are interested in one-click installs to get accreditation-read
 ### Install Virginia State Laws
 Your statedecoded will look a bit lame without any laws. We've pre-configured everything to use Virginia's laws as a sample.
 
-To finish the import of Virginia's Laws, open web browser and navigate to http://localhost:8080/admin/ and follow instructions to import.
+To finish the import of Virginia's Laws, open web browser and navigate to `http://localhost:8080/admin/` and follow instructions to import.
 
 ### (Optional) Give your GitMachine a domain name of statedecoded.dev
 Your GitMachine and Statedecoded website is configured to be accessed by the domain `statedecoded.dev`. To do this, add the following line to the bottome of your host computer's known hosts file (ex: `/etc/hosts` on Linux and Macs).
@@ -77,6 +77,9 @@ Your GitMachine and Statedecoded website is configured to be accessed by the dom
 Note: We do not automate changing your host computer's known hosts file because it is highly risky to do automatically.
 
 ### (Optional) SSH into your gitmachine and run the SCAP test
+Optionally check the configuration of the CentOS operating system against government baselines with the following command line steps.
+
+``` 
   vagrant ssh
   # Install necessary libraries
   sudo /vagrant/bootstrap.sh
