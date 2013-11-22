@@ -5,8 +5,10 @@
  *
  * PHP version 5
  *
+ * @author		Waldo Jaquith <waldo at jaquith.org>
+ * @copyright	2010-2013 Waldo Jaquith
  * @license		http://www.gnu.org/licenses/gpl.html GPL 3
- * @version		0.8
+ * @version		0.7
  * @link		http://www.statedecoded.com/
  * @since		0.1
  *
@@ -91,7 +93,6 @@ define('PDO_DSN', 'mysql:dbname=statedecoded;host=localhost;charset=utf8');
 define('PDO_USERNAME', 'statedecoded');
 define('PDO_PASSWORD', 'statedecoded');
 
-
 /*
  * Specify the structural identifier ancestry for the unit of the code that contains definitions of
  * terms that are used throughout the code, and thus should have a global scope. Separate each
@@ -115,7 +116,7 @@ define('PDO_PASSWORD', 'statedecoded');
  * presence. A growing collection of per-state regular expressions can be found at
  * <https://github.com/statedecoded/law-identifier>.
  */
-define('SECTION_REGEX', '/([[0-9]{1,})([0-9A-Za-z\-\.]{0,3})-([0-9A-Za-z\-\.:]*)([0-9A-Za-z]{1,})/');
+define('SECTION_PCRE', '/([[0-9]{1,})([0-9A-Za-z\-\.]{0,3})-([0-9A-Za-z\-\.:]*)([0-9A-Za-z]{1,})/');
 
 /*
  * The path, relative to the webroot, to an error page to be displayed if the database connection is
@@ -153,7 +154,7 @@ define('SOLR_URL', 'http://localhost:8080/solr/statedecoded/');
  * The site uses its own API extensively. Provide the API key here. (This is populated automatically
  * at the time that the parser is run.)
  */
-define('API_KEY', 'Q7tOaBvTCMf7VIw6');
+define('API_KEY', '');
 
 /*
  * If you want to enable Disqus <http://www.disqus.com/> commenting for every law, register for
@@ -183,12 +184,3 @@ define('API_KEY', 'Q7tOaBvTCMf7VIw6');
  * The Typekit ID is "abc1efg".
  */
 // define('TYPEKIT_ID', 'abc1efg');
-
-/*
- * If you want to display court decisions that affect each law using CourtListener's REST API
- * <https://www.courtlistener.com/api/rest-info/>, you must register for an account and enter your
- * username and password here. See the get_court_decisions() method in class.State-sample.inc.php
- * for more.
- */
-// define('COURTLISTENER_USERNAME', 'jane_doe');
-// define('COURTLISTENER_PASSWORD', 's3cr3tp@ssw0rd');

@@ -1,0 +1,45 @@
+# Specify our error pages.
+ErrorDocument 404 /404.php
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# If this is a request for a plain-text version of a page, translate the extention into a specific
+# request.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.txt$ /$1/?plain_text=y [PT]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/downloads/current/code-json%{REQUEST_URI} -f
+RewriteRule ^(.*\.json)$ /downloads/current/code-json/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]+)/(.*?\.json)$ /downloads/$1/code-json/$2 [L]
+
+
+RewriteRule ^index\.php$ - [L]
+
+RewriteRule ^admin/ /index.php [L]
+RewriteRule ^downloads/$ /index.php [L]
+
+# Added to correct failing about.php page on CentOS
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .\.php /index.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+
+</IfModule>
+
+
+SetEnv INCLUDE_PATH /var/www/html/statedecoded/includes/
+
+
+SetEnv EDITION_ID 1
