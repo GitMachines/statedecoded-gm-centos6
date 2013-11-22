@@ -67,6 +67,16 @@ Your statedecoded will look a bit lame without any laws. We've pre-configured ev
 
 To finish the import of Virginia's Laws, open web browser and navigate to `http://localhost:8080/admin/` and follow instructions to import.
 
+### Install Laws for a Different State
+To use laws of a different state, follow the steps below to modify files and re-import laws to use a different state laws.
+
+1. Adjust config.inc.php settings. See http://statedecoded.github.io/documentation/config.html
+2. Rename `statedecoded/includes/class.Virginia.inc` to new state name, example `statedecoded/includes/class.Indiana.inc`.
+3. Prepare the laws to the StateDecoded XML format. See http://statedecoded.github.io/documentation/
+4. Replace the Virginia XML law files with new state XML formatted laws into `statedecoded/htdocs/admin/import-data/code/`. 
+5. Empty the database. (Better instructions to come.)
+6. Re-import the laws from the admin page at `http://localhost:8080/admin/`.
+
 ### (Optional) Give your GitMachine a domain name of statedecoded.dev
 Your GitMachine and Statedecoded website is configured to be accessed by the domain `statedecoded.dev`. To do this, add the following line to the bottome of your host computer's known hosts file (ex: `/etc/hosts` on Linux and Macs).
 
