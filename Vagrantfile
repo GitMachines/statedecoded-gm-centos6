@@ -27,6 +27,6 @@ Vagrant.configure("2") do |config|
 		puppet.manifest_file = "default.pp"
 	end
 
-	config.vm.provision :shell, :path => "restart-tomcat.sh"
+	config.vm.provision :shell, :path => "restart-services.sh"
 	
 end
