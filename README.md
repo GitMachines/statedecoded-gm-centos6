@@ -44,7 +44,7 @@ At GitMachines we are interested in one-click installs to get accreditation-read
 3. Surf web for 12-15 minutes
 4. Use localhost:8080 or add statedecoded.dev to their /etc/hosts file
 5. Visit statedecoded.dev/admin and set off processing of Virginia laws
-6. (Is there a step to do to get laws ingested into Solr?)
+6. Surf web again for 20-30 minutes while laws are being imported, bulk exports prepared, and laws get indexed by Solr.
 
 ## Dependencies
   * Latest version of vagrant (vagrantup.com)
