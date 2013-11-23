@@ -26,11 +26,6 @@ RewriteRule ^index\.php$ - [L]
 RewriteRule ^admin/ /index.php [L]
 RewriteRule ^downloads/$ /index.php [L]
 
-# Added to correct about.php and search.php failing to include index.php automatically in statedecoded-gm-centos6
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule .\.php /index.php [L]
-
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]

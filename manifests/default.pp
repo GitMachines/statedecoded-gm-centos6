@@ -77,7 +77,7 @@ class { 'apache': }
 apache::vhost { 'statedecoded.dev':
   vhost_name    => '*',
   docroot       => '/var/www/html/statedecoded/htdocs/',
-  directories => [ { path => '/var/www/html/statedecoded', options => ['Indexes','FollowSymLinks','MultiViews'], allow_override => ['All'] } ],
+  directories => [ { path => '/var/www/html/statedecoded', options => ['Indexes','FollowSymLinks','-MultiViews'], allow_override => ['All'] } ],
   port          => '80',
   default_vhost => true,
   override => 'all',
