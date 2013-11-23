@@ -125,7 +125,7 @@ php::ini { '/etc/httpd/conf/php.ini':
   require => Class['apache'],
 }
 
-php::module { [ 'mysql', 'tidy', 'pear-Log' ]: }
+php::module { [ 'mysql', 'tidy', 'pear-Log', 'xml' ]: }
 
 # Add php5 to Apache
 class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini', }
