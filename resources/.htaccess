@@ -11,6 +11,12 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)\.txt$ /$1/?plain_text=y [PT]
 
+# If this is a request for an xml version of a page, translate the extention into a specific
+# request in Statedecoded-gm-centos6. Example: http://statedecoded.dev/2.2-200.xml -> http://statedecoded.dev/downloads/current/code-xml/2.2-200.xml
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.xml$ /downloads/current/code-xml/$1.xml [L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/downloads/current/code-json%{REQUEST_URI} -f
@@ -20,6 +26,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/(.*?\.json)$ /downloads/$1/code-json/$2 [L]
 
+# Add Rewrite to correctly download bulk code on Statedecoded-gm-centos6
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/downloads/current%{REQUEST_FILENAME} !-f
+RewriteRule ^downloads/(.*\.zip) /downloads/current/$1 [L]
 
 RewriteRule ^index\.php$ - [L]
 
