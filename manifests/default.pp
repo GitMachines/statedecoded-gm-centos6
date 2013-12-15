@@ -47,13 +47,15 @@ file { '/var/www/html/statedecoded/htdocs/.htaccess':
 }
 
 exec { 'pull-laws':
-  command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
+  # command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
+  command  => '/usr/bin/wget https://raw.github.com/GitMachines/statedecoded-gm-centos6-warehouse/master/vacode.org/2013/05/code-sample.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
   require  => File[ '/var/www/html/statedecoded/htdocs/admin/import-data' ],
 }
 
 exec { 'unzip-laws':
-  command  => '/usr/bin/unzip code.xml.zip',
+  # command  => '/usr/bin/unzip code.xml.zip',
+  command => '/usr/bin/unzip code-sample.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
   require  => Exec[ 'pull-laws' ],
 }
@@ -186,12 +188,15 @@ exec{ 'extract-slf4j':
 exec{ 'copy-slf4j':
   command => '/bin/cp slf4j-*.jar /usr/share/tomcat6/lib',
   cwd  => '/home/vagrant/slf4j-1.7.5',
-  require  => Exec[ 'extract-slf4j' ], }
+  require  => Exec[ 'extract-slf4j' ], 
+  timeout     => 420, }
 
 exec{ 'get-solr':
-  command => '/usr/bin/wget http://apache.mirrors.pair.com/lucene/solr/4.5.1/solr-4.5.1.tgz',
+  # command => '/usr/bin/wget http://apache.mirrors.pair.com/lucene/solr/4.5.1/solr-4.5.1.tgz',
+  command => '/usr/bin/wget http://apache.mirrors.lucidnetworks.net/lucene/solr/4.5.1/solr-4.5.1.tgz',
   cwd  => '/home/vagrant',
-  require  => Package[ 'tomcat6','tomcat6-webapps','tomcat6-admin-webapps'], }
+  require  => Package[ 'tomcat6','tomcat6-webapps','tomcat6-admin-webapps'],
+  timeout     => 600, }
 #require  => Service[ 'tomcat6' ], }
 
 exec { 'untar-solr':
