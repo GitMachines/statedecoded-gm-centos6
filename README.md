@@ -1,3 +1,7 @@
+# Status
+
+December 15, 2013 - Build working correctly. Statedecoded not running. See issue #41 (Apache mod_env error).
+
 # About
 
 This repo is to create a GitMachines version of State Decoded on CentOS 6.
