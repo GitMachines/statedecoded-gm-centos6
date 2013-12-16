@@ -71,12 +71,12 @@ At GitMachines we are interested in one-click installs to get accreditation-read
   # Your statedecoded GitMachines is running on http://localhost:8080
 ```
 
-### Install Virginia State Laws
+### (Recommended) Install Virginia State Laws
 Your statedecoded will look a bit lame without any laws. We've pre-configured everything to use Virginia's laws as a sample.
 
 To finish the import of Virginia's Laws, open web browser and navigate to `http://localhost:8080/admin/` and follow instructions to import.
 
-### Install Laws for a Different State
+### (Optional) Install Laws for a Different State
 To use laws of a different state, follow the steps below to modify files and re-import laws to use a different state laws.
 
 1. Adjust config.inc.php settings. See http://statedecoded.github.io/documentation/config.html
