@@ -1,6 +1,6 @@
 # Status
 
-December 15, 2013 - Build working correctly. Statedecoded not running. See issue #41 (Apache mod_env error).
+December 16, 2013 - Build working correctly. Statedecoded running.
 
 # About
 
