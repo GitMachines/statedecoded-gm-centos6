@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2013 Greg Elin <gregelin@gitmachines.com>, John Lancaster <john.k.lancaster@gmail.com>, Rodney Cobb <roacobb@gmail.com>, Ikjae Park <Park.Ikjae@gmail.com>, Blaine Whited <blaine.p.whited@gmail.com>
+Copyright (c) 2013 Greg Elin <gregelin@gitmachines.com>, John Lancaster <john.k.lancaster@gmail.com>, Rodney Cobb <roacobb@gmail.com>, Ikjae Park <Park.Ikjae@gmail.com>, Blaine Whited <blaine.p.whited@gmail.com>, Daniel Pfile, Waldo Jaquith.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
