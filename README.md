@@ -107,7 +107,7 @@ Optionally check the configuration of the CentOS operating system against govern
   sudo cp /tmp/localhost.localdomain-ssg-results.xml /var/www/html/statedecoded/htdocs/ssg-results.xml
 ```
 
-Your report will not be available at `http://localhost:8080/ssg-results.html` and `http://localhost:8080/ssg-results.xml`
+Your report will now be available at `http://localhost:8080/ssg-results.html` and `http://localhost:8080/ssg-results.xml`
 
 ## Security
 
