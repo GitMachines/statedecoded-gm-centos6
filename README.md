@@ -1,6 +1,6 @@
 # Status
 
-December 26, 2013 - Build working correctly. Statedecoded running.
+December 31, 2013 - Build working correctly. Statedecoded running. Search not return results, need to look at imports of search information.
 
 # About
 
