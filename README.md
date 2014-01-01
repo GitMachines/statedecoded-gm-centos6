@@ -1,6 +1,6 @@
 # Status
 
-December 31, 2013 - Build working correctly. Statedecoded running. Search not return results, need to look at imports of search information.
+* Jan 01, 2014 - Build working correctly. Statedecoded running. Search not return results, need to look at imports of search information. (https://github.com/GitMachines/statedecoded-gm-centos6/issues/44)
 
 # About
 
