@@ -13,6 +13,12 @@ audit
   |
   +-- reports
   +-- resources
+        |
+        +-- scripts
+        +-- ssg
+              |
+              +-- content
+
 
 reports - Reports and other output of audit scans
 
