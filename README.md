@@ -9,7 +9,7 @@ This repo is to create a GitMachines version of State Decoded on CentOS 6.
 Our goals:
 
 - [x] First, a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
-- [] Second, **basic scans for security auditing** as part of the install.
+- [X] Second, **basic scans for security auditing** as part of the install. (in progress)
 - [] Third, **transparent documentation to make multi-machine configuration easier.** 
 - [] Finally, **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
 
@@ -61,18 +61,37 @@ At GitMachines we are interested in one-click installs to get accreditation-read
 
 ## Instructions
 
-### One-click build
+### One-click build and (simple) audit run
 ```
   # Clone this repo locally to your computer and switch to repo directory.
   git clone git@github.com:GitMachines/statedecoded-gm-centos6.git
   cd statedecoded-gm-centos6
   
-  # Stop any processes# Launch your gitmachine 
+  # Stop any running virtual machines that might conflict on ports 8080 and 8081.
+  # Launch your gitmachine 
   vagrant up
   # Browse the web, b/c this will take a while. 
 
   # Your statedecoded GitMachines is running on http://localhost:8080
+  # Openscap has been installed and a very (very) simple scan is run 
+
+  # Check out your GitMachine!
+  open audit/home.html
+
 ```
+
+### (Optional) SSH into your gitmachine and run the SCAP test
+Optionally check the configuration of the CentOS operating system against government baselines with the following command line steps.
+
+``` 
+  vagrant ssh
+  # Install necessary libraries
+  sudo /vagrant/bootstrap.sh
+  /vagrant/resources/scripts/oscap-rhel6.sh
+
+  # Reports are available in audit/reports directory.
+```
+
 
 ### (Recommended) Install Virginia State Laws
 Your statedecoded will look a bit lame without any laws. We've pre-configured everything to use Virginia's laws as a sample.
@@ -97,20 +116,6 @@ Your GitMachine and Statedecoded website is configured to be accessed by the dom
 ```
 
 Note: We do not automate changing your host computer's known hosts file because it is highly risky to do automatically.
-
-### (Optional) SSH into your gitmachine and run the SCAP test
-Optionally check the configuration of the CentOS operating system against government baselines with the following command line steps.
-
-``` 
-  vagrant ssh
-  # Install necessary libraries
-  sudo /vagrant/bootstrap.sh
-  /vagrant/tryit.sh
-  sudo cp /tmp/localhost.localdomain-ssg-results.html /var/www/html/statedecoded/htdocs/ssg-results.html
-  sudo cp /tmp/localhost.localdomain-ssg-results.xml /var/www/html/statedecoded/htdocs/ssg-results.xml
-```
-
-Your report will now be available at `http://localhost:8080/ssg-results.html` and `http://localhost:8080/ssg-results.xml`
 
 ## Security
 

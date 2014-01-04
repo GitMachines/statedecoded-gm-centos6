@@ -27,6 +27,14 @@ Vagrant.configure("2") do |config|
 		puppet.manifest_file = "default.pp"
 	end
 
+	# Restart Apache & Tomcat
 	config.vm.provision :shell, :path => "misc/scripts/restart-services.sh"
+
+	# Install scap
+	config.vm.provision :shell, :path => "audit/resources/scripts/scap-install.sh"
+
+	# Run simple scap test
+	config.vm.provision :shell, :path => "audit/resources/scripts/oscap-rhel6-test2.sh"
+
 	
 end
