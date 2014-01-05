@@ -36,5 +36,7 @@ Vagrant.configure("2") do |config|
 	# Run simple scap test
 	config.vm.provision :shell, :path => "audit/resources/scripts/oscap-rhel6-test2.sh"
 
-	
+	# Run stig-rhel6-server scap test
+	config.vm.provision :shell, :path => "audit/resources/scripts/oscap-rhel6.sh"
+
 end
