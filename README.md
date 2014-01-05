@@ -1,6 +1,9 @@
 # Status
 
-* Jan 04, 2014 - Build working correctly. Statedecoded running. Search resturning results. (Note, had to run import a second time.)
+| Date         | Status |
+|--------------|-------------|
+| Jan 05, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL |
+| Jan 04, 2014 | Build working correctly. Statedecoded running. Search resturning results. (Note, had to run import a second time.)|
 
 # About
 
@@ -9,11 +12,13 @@ This repo is to create a GitMachines version of State Decoded on CentOS 6.
 Our goals:
 
 - [x] First, a **one-click install of Waldo Jacquith's [Statedecoded](http://www.statedecoded.com/)**.
-- [X] Second, **basic scans for security auditing** as part of the install. (in progress)
+- [X] Second, **basic scans for security auditing** as part of the install. (in progress as of 01.04.2014)
 - [] Third, **transparent documentation to make multi-machine configuration easier.** 
 - [] Finally, **a Statedecoded GitMachine - fully accreditation-ready, one-click install of Statedecoded on a virtual machine**, ready for easy adoption.
 
 ** Warning this is a work in progress - Please check branches for activity**
+
+# Versions
 
 ## 
 | Version | Description |
