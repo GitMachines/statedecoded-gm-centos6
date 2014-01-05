@@ -85,16 +85,25 @@ At GitMachines we are interested in one-click installs to get accreditation-read
 
 ```
 
-### (Optional) SSH into your gitmachine and run the SCAP test
-Optionally check the configuration of the CentOS operating system against government baselines with the following command line steps.
+### (Optional) SSH into your gitmachine and run the SCAP test manually
+You can run your own audit checks using installed openscap `oscap` from the command line steps.
 
 ``` 
   vagrant ssh
-  # Install necessary libraries
-  sudo /vagrant/bootstrap.sh
+  
+  # Re-run sample scap script
   /vagrant/resources/scripts/oscap-rhel6.sh
 
   # Reports are available in audit/reports directory.
+
+  # Want to run your own scan, here is the command format from oscap-rhel6.sh
+
+oscap xccdf eval --profile stig-rhel6-server \
+  --results /vagrant/audit/reports/results-stig-rhel6-server.xml \
+  --report /vagrant/audit/reports/report-stig-rhel6-server.html \
+  --cpe /usr/share/xml/scap/ssg/content/ssg-rhel6-cpe-dictionary.xml \
+  /usr/share/xml/scap/ssg/content/ssg-rhel6-xccdf.xml
+
 ```
 
 
