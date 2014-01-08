@@ -2,6 +2,7 @@
 
 | Date         | Status |
 |--------------|-------------|
+| Jan 08, 2014 | VM OK. Statedecoded OK. Search OK (Had to run second import for laws to be imported. Appears "import" button has to be clicked instead of return to submit form.) SCAP Scan FAILED_AUTO OK_MANUAL |
 | Jan 05, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL |
 | Jan 04, 2014 | Build working correctly. Statedecoded running. Search resturning results. (Note, had to run import a second time.)|
 
