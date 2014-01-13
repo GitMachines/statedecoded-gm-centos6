@@ -2,6 +2,7 @@
 
 | Date         | Status |
 |--------------|-------------|
+| Jan 13, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL.  |
 | Jan 12, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL.  |
 | Jan 11, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL.  |
 | Jan 10, 2014 09:24 | Working on debugging issue with build. |
