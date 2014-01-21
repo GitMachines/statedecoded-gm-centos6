@@ -2,9 +2,9 @@
 
 | Date         | Status |
 |--------------|-------------|
-| Jan 19, 2014 | VM OK. Statedecoded OK. files needed to be loaded twice before search worked. SCAP Scan FAILED_AUTO OK_MANUAL.  |
+| Jan 21, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan Simple OK.  |
+| Jan 20, 2014 | VM OK. Statedecoded OK. files needed to be loaded twice before search worked. SCAP Scan FAILED_AUTO OK_MANUAL.  |
 | Jan 17, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL.  |
-| Jan 16, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan FAILED_AUTO OK_MANUAL.  |
 
 For additional status visit [STATUS.md](STATUS.md)
 
