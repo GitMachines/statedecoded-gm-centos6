@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
 	
 	config.vm.box = "centos-64-x64-vbox4210"
 	config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+	config.vm.hostname = "statedecoded-gm-centos6"
 	
 	# network config from statedecoded
 	config.vm.network :private_network, ip: "192.168.56.101"
