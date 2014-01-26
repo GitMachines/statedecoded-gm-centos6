@@ -1,2 +1,5 @@
 .vagrant/
 statedecoded/
+audit/reports/*.html
+audit/reports/*.xml
+
