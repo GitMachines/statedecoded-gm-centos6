@@ -24,6 +24,7 @@ Our goals:
 ## 
 | Version | Description |
 |---------|-------------|
+| v0.4.0  | Fully automatic build of State Decoded including configuring of Solr, loading sample laws, and running SCAP scan to generate reports.|
 | v0.3.0 audit-stub | One-click build of StateDecoded from a released version on localhost:8080 (including Solr running with Tomcat6). Subset of Virginia imported from project warehouse for reliability. Import tested. Laws import. Bulk exports prepared. Laws indexed in Solr. Links to text and xml versions of law work. Bulk dowload works. Added audit folder and simpler test profile to run scap easier. |
 | v0.2.3 nicer++.1 | One-click build of StateDecoded on localhost:8080 (including Solr running with Tomcat6). Virginia laws prepared for import. Import tested. Laws import. Bulk exports prepared. Laws indexed in Solr. Links to text and xml versions of law work. Bulk dowload works. Separate script to run SCAP report. OS not yet locked down. |
 | v0.2 nicer | one-click install to working StateDecoded localhost:8080, tomcat6, solr. Ready to import Virginia laws. Solr not populated. No auto security check. | 
