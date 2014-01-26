@@ -51,16 +51,18 @@ At GitMachines we are interested in one-click installs to get accreditation-read
 5. Installs PHP 5, Apache, Java (for Solr, Tomcat), Tomcat6 (for running Solr), Solr,
 6. Configures statedecoded.dev virtual host
 7. Pulls down Virginia state laws
-8. Has everything running on completion
-9. Has a script to trigger SCAP security scan (not currently part of automation chain)d
+8. Automatically runs SCAP security scan using oscap and produces report
+9. Automatically imports subset sample of Virginia laws
+
 
 ### What user needs to do...
-1. Clone repo and cd into repo directory
-2. Type `vagrant up`
-3. Surf web for 12-15 minutes
-4. Use localhost:8080 or add statedecoded.dev to their /etc/hosts file
-5. Visit statedecoded.dev/admin and set off processing of Virginia laws
-6. Surf web again for 20-30 minutes while laws are being imported, bulk exports prepared, and laws get indexed by Solr.
+1. Open terminal
+2. Clone repo `git clone git@github.com:GitMachines/statedecoded-gm-centos6.git`
+3. Change directory into `statedecoded-gm-centos6`
+2. Type `vagrant up` 
+3. Surf web for ~20 minutes (may vary with speed of connection)
+4. Wait ~10 minutes while sample laws automatically imported, bulk exports prepared, and laws get indexed by Solr
+5. Type `open audit/home.html` to open your GitMachines control page
 
 ## Dependencies
   * Latest version of vagrant (vagrantup.com)
@@ -78,12 +80,14 @@ At GitMachines we are interested in one-click installs to get accreditation-read
   # Stop any running virtual machines that might conflict on ports 8080 and 8081.
   # Launch your gitmachine 
   vagrant up
-  # Browse the web, b/c this will take a while. 
+  # Browse the web, b/c this will take ~ 30 minutes or more. 
 
   # Your statedecoded GitMachines is running on http://localhost:8080
+  # Sample laws have been imported
   # Openscap has been installed and a very (very) simple scan is run 
 
   # Check out your GitMachine!
+  # If a browser does not open on its own, enter the below line on command line
   open audit/home.html
 
 ```
@@ -110,10 +114,10 @@ oscap xccdf eval --profile stig-rhel6-server \
 ```
 
 
-### (Recommended) Install Virginia State Laws
+### Adding Laws
 Your statedecoded will look a bit lame without any laws. We've pre-configured everything to use Virginia's laws as a sample.
 
-To finish the import of Virginia's Laws, open web browser and navigate to `http://localhost:8080/admin/` and follow instructions to import.
+To change the laws you will need to follow the below steps.
 
 ### (Optional) Install Laws for a Different State
 To use laws of a different state, follow the steps below to modify files and re-import laws to use a different state laws.

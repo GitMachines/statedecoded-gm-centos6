@@ -40,4 +40,8 @@ Vagrant.configure("2") do |config|
 	# Run stig-rhel6-server scap test
 	config.vm.provision :shell, :path => "audit/resources/scripts/oscap-rhel6.sh"
 
+	# Import sample laws
+	# Comment out the below line to prevent automatica importing of sample laws from Virginia
+	config.vm.provision :shell, :path => "misc/scripts/import-sample-laws.sh"
+
 end
