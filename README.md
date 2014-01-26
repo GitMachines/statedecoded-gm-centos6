@@ -1,12 +1,11 @@
 # Status
 
-| Date         | Status |
-|--------------|-------------|
-| Jan 24, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan Simple OK.  |
-| Jan 23, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan Simple OK.  |
-| Jan 21, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan Simple OK.  |
+| Date         | Status | Time to Build |
+|--------------|-------------|-------------|
+| Jan 26, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK. Sample laws imported OK | real 34m50.109s; user 0m17.870s; sys 0m12.646s
+|
 
-For additional status visit [STATUS.md](STATUS.md)
+For previous status tests see [STATUS.md](STATUS.md)
 
 # About
 
