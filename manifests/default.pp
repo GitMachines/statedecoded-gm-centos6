@@ -193,8 +193,9 @@ exec{ 'copy-slf4j':
   timeout     => 420, }
 
 exec{ 'get-solr':
-  # command => '/usr/bin/wget http://apache.mirrors.pair.com/lucene/solr/4.5.1/solr-4.5.1.tgz',
-  command => '/usr/bin/wget http://apache.mirrors.lucidnetworks.net/lucene/solr/4.5.1/solr-4.5.1.tgz',
+  # command => '/usr/bin/wget http://apache.mirrors.lucidnetworks.net/lucene/solr/4.6.1/solr-4.6.1.tgz', # See issue #58
+  # command => '/usr/bin/wget http://apache.mirrors.lucidnetworks.net/lucene/solr/4.5.1/solr-4.5.1.tgz', # See issue #56
+  command => '/usr/bin/wget http://archive.apache.org/dist/lucene/solr/4.5.1/solr-4.5.1.tgz',
   cwd  => '/home/vagrant',
   require  => Package[ 'tomcat6','tomcat6-webapps','tomcat6-admin-webapps'],
   timeout     => 600, }
