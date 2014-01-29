@@ -2,10 +2,10 @@
 
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
+| Jan 29, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 32m37.225s; user 0m17.062s; sys 0m12.325s |
 | Jan 28, 2014 Updated| VM OK. Statedecoded OK. Search import records failing on first import. |real 44m48.096s; user  0m19.328s; sys 0m14.857s |
 | Jan 28, 2014 | VM failing to install Solr-4.5.1 because Solr mirrors now offering Solr-4.6.1 and Solr-4.6.1 causes error. Working on solution.| |
-| Jan 27, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK. Sample laws imported OK | real 30m54.485s; user 0m16.740s; sys 0m12.194s|
-| Jan 26, 2014 | VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK. Sample laws imported OK | real 34m50.109s; user 0m17.870s; sys 0m12.646s |
+
 
 For previous status tests see [STATUS.md](STATUS.md)
 
