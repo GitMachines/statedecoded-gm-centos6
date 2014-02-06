@@ -2,6 +2,7 @@
 
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
+| Feb 06, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 35m1.503s; user 0m18.239s; sys 0m13.442s|
 | Feb 04, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 32m0.920s; user 0m17.539s; sys 0m13.440s |
 | Feb 03, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 37m59.014s; user  0m18.903s; sys 0m14.394s |
 | Jan 31, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real	32m17.492s; user	0m17.187s; sys	0m13.013s |
