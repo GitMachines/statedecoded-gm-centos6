@@ -2,6 +2,8 @@
 
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
+| Feb 11, 2014 Updated| VM FAIL on first attempt. See https://github.com/GitMachines/statedecoded-gm-centos6/issues/61 |real 17m6.824s; user 0m15.142s; sys 0m11.967s|
+| Feb 10, 2014 Updated| VM OK. Statedecoded OK. Search OK> SCAP Scan ran OK.|not recorded|
 | Feb 09, 2014 Updated| VM OK. Statedecoded OK. Search import failed two attempts. Re-running importing laws worked. SCAP Scan ran OK.|real 32m15.545s; user 0m18.449s; sys 0m14.330s|
 | Feb 08, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 31m10.238s; user 0m18.278s; sys 0m14.017s|
 | Feb 06, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 35m1.503s; user 0m18.239s; sys 0m13.442s|
