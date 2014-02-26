@@ -87,17 +87,13 @@ apache::vhost { 'statedecoded.dev':
   require       => Exec['get-statedecoded']
 }
 
-resources { "firewall":
-  # remove existing firewall rules
-  purge => true
+# Copy firewall
+file { "/etc/sysconfig/iptables":
+    mode => 600,
+    owner => root,
+    group => root,
+    source => "/vagrant/templates/etc/sysconfig/iptables.erb"
 }
-
-Firewall {
-  before  => Class['my_fw::post'],
-  require => Class['my_fw::pre']
-}
-class { ['my_fw::pre', 'my_fw::post', 'my_fw::tomcat']: }
-class { 'firewall': }
 
 # Install and define MySQL
 class { 'mysql::server':

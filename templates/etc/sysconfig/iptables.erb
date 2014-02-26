@@ -1,4 +1,5 @@
-# Firewall configuration created and managed by Puppet 
+# Firewall configuration written by system-config-firewall
+# Manual customization of this file is not recommended.
 # Do not edit manually
 *filter
 :INPUT ACCEPT [0:0]
@@ -8,9 +9,9 @@
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
--A INPUT -m tcp -p tcp --dport 80 -j ACCEPT
--A INPUT -m tcp -p tcp --dport 443 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 --comment "100 allow http access" -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 443 --comment "100 allow https access" -j ACCEPT
+-A INPUT -m tcp -p tcp --ports 8080 --comment "100 allow tomcat access for solr" -j ACCEPT
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 COMMIT
-
