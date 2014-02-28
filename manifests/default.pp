@@ -47,8 +47,9 @@ file { '/var/www/html/statedecoded/htdocs/.htaccess':
 }
 
 exec { 'pull-laws':
+  # Note: this needs to be made more secure to deal with certificate
   # command  => '/usr/bin/wget http://vacode.org/downloads/code.xml.zip',
-  command  => '/usr/bin/wget https://raw.github.com/GitMachines/statedecoded-gm-centos6-warehouse/master/vacode.org/2013/05/code-sample.xml.zip',
+  command  => '/usr/bin/wget --no-check-certificate https://raw.github.com/GitMachines/statedecoded-gm-centos6-warehouse/master/vacode.org/2013/05/code-sample.xml.zip',
   cwd      => '/var/www/html/statedecoded/htdocs/admin/import-data',
   require  => File[ '/var/www/html/statedecoded/htdocs/admin/import-data' ],
 }
