@@ -2,6 +2,7 @@
 
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
+| Feb 28, 2014 Updated| VM FAILING - Issue with restarting iptables. See  https://github.com/GitMachines/statedecoded-gm-centos6/issues/63| not tracked |
 | Feb 27, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| not tracked |
 | Feb 26, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.|real 32m23.475s; user 0m18.413s; sys 0m14.033s|
 | Feb 11, 2014 Updated| VM FAIL on first attempt. See https://github.com/GitMachines/statedecoded-gm-centos6/issues/61 |real 17m6.824s; user 0m15.142s; sys 0m11.967s|
