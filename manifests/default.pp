@@ -62,8 +62,8 @@ exec { 'unzip-laws':
 }
 	
 exec { 'get-statedecoded':
-  command   => '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/v0.81.tar.gz| /bin/tar zx --strip 1',
-  # command   => '/usr/bin/wget -S -O - https://github.com/statedecoded/statedecoded/archive/master.tar.gz| /bin/tar zx --strip 1',
+  command   => '/usr/bin/wget --no-check-certificate -S -O - https://github.com/statedecoded/statedecoded/archive/v0.81.tar.gz| /bin/tar zx --strip 1',
+  # command   => '/usr/bin/wget --no-check-certificate -S -O - https://github.com/statedecoded/statedecoded/archive/master.tar.gz| /bin/tar zx --strip 1',
   cwd   => '/var/www/html/statedecoded',
   require         => Class['apache'],
 }
