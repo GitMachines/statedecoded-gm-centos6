@@ -1,11 +1,13 @@
 # Status
 
+ALERT: Due to Oracle policy change, this automated build stopped working as of March 16, 2014. See: https://github.com/GitMachines/statedecoded-gm-centos6/issues/64 for more details. 
+
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
+| Mar 16, 2014 Updated| VM FAIL. Issue with Java download. See https://github.com/GitMachines/statedecoded-gm-centos6/issues/64 | N/A |
 | Mar 11, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real  30m9.291s; user 0m16.739s; sys 0m12.182s |
 | Mar 10, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 37m49.141s; user 0m18.926s; sys 0m14.909s |
-| Mar 08, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 35m13.808s; user 0m18.711s; sys 0m14.519s |
-|
+
 For previous status tests see [STATUS.md](STATUS.md)
 
 # About
