@@ -131,7 +131,7 @@ php::module { [ 'mysql', 'tidy', 'pear-Log', 'xml' ]: }
 class { 'php::mod_php5': inifile => '/etc/httpd/conf/php.ini', }
 
 exec{ 'get-java':
-  command  => '/usr/bin/wget -S -O java.tar.gz --no-cookies --no-check-certificate --head  "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/7u45-b18/jdk-7u45-linux-x64.tar.gz"',
+  command  => '/usr/bin/wget -S -O java.tar.gz --no-cookies --no-check-certificate --head  "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/7u45-b18/jdk-7u45-linux-x64.tar.gz"',
   cwd  => '/opt', }
 
 exec{ 'extract-java':
