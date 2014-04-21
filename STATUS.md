@@ -4,7 +4,7 @@ ALERT: Due to Oracle policy change, this automated build stopped working as of M
 
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
-| Apr 22, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 30m55.886s; user 0m16.435s; sys 0m11.889s |
+| Apr 21, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 30m55.886s; user 0m16.435s; sys 0m11.889s |
 | Apr 19, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 28m47.478s; user 0m16.496s; sys 0m11.757s |
 | Apr 18, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 33m0.775s; user 0m17.059s; sys 0m12.175s |
 | Mar 16, 2014 Updated| VM FAIL. Issue with Java download. See https://github.com/GitMachines/statedecoded-gm-centos6/issues/64 | N/A |
