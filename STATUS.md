@@ -4,6 +4,7 @@ ALERT: Due to Oracle policy change, this automated build stopped working as of M
 
 | Date         | Status | Time to Build |
 |--------------|-------------|-------------|
+| Apr 24, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 31m8.796s; user 0m17.039s; sys 0m12.127s |
 | Apr 21, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 30m55.886s; user 0m16.435s; sys 0m11.889s |
 | Apr 19, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 28m47.478s; user 0m16.496s; sys 0m11.757s |
 | Apr 18, 2014 Updated| VM OK. Statedecoded OK. Search OK. SCAP Scan ran OK.| real 33m0.775s; user 0m17.059s; sys 0m12.175s |
